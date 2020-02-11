@@ -1,11 +1,18 @@
 import java.io.*;
 import java.util.*;
 
-import org.json.simple.JSONObject;
+import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+
 public class IOJSON {
+	
+	public static void main(String[] args) {
+		IOJSON fss = new IOJSON();
+		fss.doJSONSample();
+	}
+	
 	public void createFileAndGetDetails(String fileName) {
 		try {
 			File fileReference = new File(fileName);
@@ -91,7 +98,7 @@ public class IOJSON {
 		createFileAndGetDetails(jsonFile);
 		//overwrite data with an empty json object
 		//comment this line if you want to load a previous json object
-		writeToFile(jsonFile, "{}");
+		writeToFile(jsonFile, "");
 		try {
 			//parse our file contents (see what happens if we have an empty string in
 			//the previous writeToFile function call
@@ -99,6 +106,7 @@ public class IOJSON {
 			JSONObject jo = (JSONObject) new JSONParser().parse(new FileReader(jsonFile));
 			//start adding key value pairs
 			jo.put("name", "John");
+			jo.put("name", "Ryan"); 
 			jo.put("age", 55);
 			//this shows how we can add a sub set of key value pairs under a single key
 			Map<String, String> map = new LinkedHashMap<String, String>(4);//complex details for one key
@@ -124,10 +132,6 @@ public class IOJSON {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-	public static void main(String[] args) {
-		FileSystemSampleJSON fss = new FileSystemSampleJSON();
-		fss.doJSONSample();
 	}
 }
 //TODO TBD
