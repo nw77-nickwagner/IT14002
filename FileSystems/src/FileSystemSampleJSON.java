@@ -1,11 +1,17 @@
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import json.simple.JSONObject;
+import json.simple.parser.JSONParser;
+import json.simple.parser.ParseException;
 
-public class IOJSON {
+public class FileSystemSampleJSON {
 	public void createFileAndGetDetails(String fileName) {
 		try {
 			File fileReference = new File(fileName);
@@ -115,13 +121,10 @@ public class IOJSON {
 			readFromFile(jsonFile);
 			System.out.println("Done runnning JSON Sample");
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
