@@ -1,0 +1,7 @@
+public enum PayloadType_M3 {
+	CONNECT,
+	DISCONNECT,
+	MESSAGE,
+	SWITCH,
+	STATE_SYNC
+}
