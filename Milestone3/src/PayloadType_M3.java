@@ -2,6 +2,8 @@ public enum PayloadType_M3 {
 	CONNECT,
 	DISCONNECT,
 	MESSAGE,
-	SWITCH,
-	STATE_SYNC
+	STATE_SYNC, 
+	CHECK,
+	FOLD
+	//RAISE
 }

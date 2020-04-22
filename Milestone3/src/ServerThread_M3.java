@@ -1,4 +1,4 @@
-	import java.io.IOException;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -23,6 +23,9 @@ public class ServerThread_M3 extends Thread{
 		//when we send the message, we aren't in the clients list yet
 		//so we won't see that we connected. Jump down to run()
 		//broadcastConnected();
+	}
+	public void setClientId(long id) {
+		clientName += "_" + id;
 	}
 	void syncStateToMyClient() {
 		System.out.println(this.clientName + " broadcast state");
@@ -124,10 +127,22 @@ public class ServerThread_M3 extends Thread{
 			//payload.setMessage(WordBlackList.filter(payload.getMessage()));
 			server.broadcast(payload, this.clientName);
 			break;
-		case SWITCH:
+		case CHECK:
 			//whatever we get from the client, just tell everyone else, ok?
+			payload.setMessage(this.clientName);
 			server.toggleButton(payload);
 			break;
+		case FOLD:
+			//whatever we get from the client, just tell everyone else, ok?
+			payload.setMessage(this.clientName);
+			server.toggleButton(payload);
+			break;
+		/*case RAISE:
+			whatever we get from the client, just tell everyone else, ok?
+			payload.setMessage(this.clientName);
+			server.toggleButton(payload);
+			break;
+			*/
 		default:
 			System.out.println("Unhandled payload type from client " + payload.getPayloadType());
 			break;

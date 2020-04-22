@@ -1,3 +1,4 @@
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -7,6 +8,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
 import com.google.gson.Gson;
 
 
@@ -16,19 +18,19 @@ public class Server_M3 {
 	private List<ServerThread_M3> clients = new ArrayList<ServerThread_M3>();
 	//We'll use a queue and a thread to separate our chat history
 	Queue<String> messages = new LinkedList<String>();
-	public GameState state = new GameState();
-	
-	class GameState{
-		boolean isButtonOn = false;
+	public GameState1 state = new GameState1();
+	public static int ClientID = 0;
+	public synchronized int getNextId() {
+		ClientID++;
+		return ClientID;
 	}
-	
 	public synchronized void toggleButton(Payload_M3 payload) {
-		if(state.isButtonOn && !payload.IsOn()) {
-			state.isButtonOn = false;
+		if(state.isButtonOn1 && !payload.IsOn()) {
+			state.isButtonOn1 = false;
 			broadcast(payload);
 		}
-		else if (!state.isButtonOn && payload.IsOn()) {
-			state.isButtonOn = true;
+		else if (!state.isButtonOn1 && payload.IsOn()) {
+			state.isButtonOn1 = true;
 			broadcast(payload);
 		}
 	}
@@ -45,6 +47,7 @@ public class Server_M3 {
 					//Server thread is the server's representation of the client
 					ServerThread_M3 thread = new ServerThread_M3(client, this);
 					thread.start();
+					thread.setClientId(getNextId());
 					//add client thread to list of clients
 					clients.add(thread);
 					System.out.println("Client added to clients pool");
@@ -175,4 +178,8 @@ public class Server_M3 {
 		server.start(port);
 		System.out.println("Server Stopped");
 	}
+}
+class GameState1{
+	boolean isButtonOn1 = false;
+	public boolean isButtonOn;
 }
