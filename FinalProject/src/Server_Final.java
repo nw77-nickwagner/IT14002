@@ -213,7 +213,18 @@ public class Server_Final {
 		*/	
 	}
 }
-	
+	/*
+	public int winnings() {
+		if(hand.compareTo(hand) == -1) {
+			clients.get(index of whoever won).getBalance() -= the loser's index and how ever much they lost
+		}
+		if(hand.compareTo(hand) == 1) {
+			clients.get(index of who won)
+		}
+		
+		return balance;
+	}
+	*/
 	public void bust() {
 		if(balance == 0) {			
 			System.out.println("You have lost all your money, game over");
