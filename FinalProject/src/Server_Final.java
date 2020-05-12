@@ -232,8 +232,14 @@ public class Server_Final {
 		}
 	}
 	
+	public static int pot;
 	public static int bigBlind = 10, smallBlind = 5;
 	public static void blinds() {
+		for(int i = 0; i <= 3; i++) {
+			//clients.get(currentPlayer).getBalance() -= bigBlind;
+			//clients.get(lastPlayer).getBalance() -= smallBlind;
+		}
+		pot += bigBlind +smallBlind;
 	}
 	public static void main(String[] args) {
 		//let's allow port to be passed as a command line arg
