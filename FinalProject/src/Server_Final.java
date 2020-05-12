@@ -179,6 +179,7 @@ public class Server_Final {
 	//when the cards have been displayed shuffle and then deal
 	//create a parameter or function marking the need for another round, so when hands are displayed and winnings 
 	//are given restart the round.
+	int newBalance = balance;
 	public void round() {
 		int players2 = 2;
 		int players3 = 3;
@@ -204,6 +205,10 @@ public class Server_Final {
 					break;
 				}
 			}
+			
+		for(int i = 0; i <clients.size(); i ++) {
+			balance = newBalance + pot;
+		}
 			
 		/*for(int i = 0; i < clients.size(); i ++) {
 			if(clients.get(i) != null ) {
